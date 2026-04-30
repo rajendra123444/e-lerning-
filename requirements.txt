@@ -1,0 +1,23 @@
+# Django Core
+Django==4.2.7
+
+# Image Processing (for cover photos)
+Pillow==10.1.0
+
+# Database (SQLite is built-in, but if you want to use PostgreSQL later)
+# psycopg2-binary==2.9.9
+
+# For environment variables (optional)
+python-dotenv==1.0.0
+
+# For better JSON responses
+# djangorestframework==3.14.0
+
+# For CORS (if needed for development)
+# django-cors-headers==4.3.1
+
+asgiref==3.7.2
+Django==4.2.7
+Pillow==10.1.0
+sqlparse==0.4.4
+tzdata==2023.3
