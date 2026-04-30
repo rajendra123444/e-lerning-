@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Upload Note{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3><i class="fas fa-upload"></i> Upload Your Note</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Title *</label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Cover Photo (Optional)</label>
+                            <input type="file" name="cover_photo" class="form-control" accept="image/*">
+                            <small class="text-muted">Recommended size: 300x200px</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">PDF File *</label>
+                            <input type="file" name="pdf_file" class="form-control" accept=".pdf" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Branch (Optional)</label>
+                                    <select name="semester" class="form-control" id="id_semester">
+                                        <option value="">Select Semester</option>
+                                        {% for sem in semesters %}
+                                            <option value="{{ sem.id }}">{{ sem.branch.name }} - Sem {{ sem.semester_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Subject (Optional)</label>
+                                    <select name="subject" class="form-control" id="id_subject">
+                                        <option value="">Select subject after choosing semester</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Upload Note</button>
+                        <a href="{% url 'notes_home' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('id_semester').addEventListener('change', function() {
+        var semesterId = this.value;
+        var subjectSelect = document.getElementById('id_subject');
+        if (semesterId) {
+            fetch(`/api/get-subjects/?semester_id=${semesterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+                    data.subjects.forEach(subject => {
+                        subjectSelect.innerHTML += `<option value="${subject.id}">${subject.name}</option>`;
+                    });
+                });
+        } else {
+            subjectSelect.innerHTML = '<option value="">Select subject after choosing semester</option>';
+        }
+    });
+</script>
+{% endblock %}
