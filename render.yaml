@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: minor
+    env: python
+    region: singapore
+    plan: free
+    
+    buildCommand: bash build.sh
+    startCommand: gunicorn minor.wsgi:application
+    
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: PYTHON_VERSION
+        value: "3.11"
+    
+    numInstances: 1
+    healthCheckPath: /admin/
+    
+databases:
+  - name: minordb
+    dbName: minordb
+    user: minoruser
+    plan: free
+    region: singapore
