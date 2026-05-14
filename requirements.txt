@@ -39,7 +39,7 @@ pytest
 pytest-django
 
 # Code quality
-black==
+black
 flake8
 isort
 
