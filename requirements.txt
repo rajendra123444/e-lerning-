@@ -1,23 +1,66 @@
-# Django Core
-Django==4.2.7
+# Django Framework
+Django==6.0.3
 
-# Image Processing (for cover photos)
+# Database (SQLite3 - built-in, but including for clarity)
+# sqlite3 is included with Python
+
+# Python Imaging Library (for image handling)
 Pillow==10.1.0
 
-# Database (SQLite is built-in, but if you want to use PostgreSQL later)
-# psycopg2-binary==2.9.9
-
-# For environment variables (optional)
+# Environment variables management
 python-dotenv==1.0.0
 
-# For better JSON responses
-# djangorestframework==3.14.0
+# WSGI HTTP Server
+gunicorn==21.2.0
 
-# For CORS (if needed for development)
-# django-cors-headers==4.3.1
+# REST API Framework (if needed)
+djangorestframework==3.14.0
 
-asgiref==3.7.2
-Django==4.2.7
-Pillow==10.1.0
-sqlparse==0.4.4
-tzdata==2023.3
+# CORS Headers (if API requests from frontend)
+django-cors-headers==4.3.1
+
+# Admin customization
+django-admin-interface==0.25.0
+
+# Form handling & validation
+django-crispy-forms==2.1
+
+# Pagination & filtering
+django-filter==23.5
+
+# API Documentation
+drf-spectacular==0.26.5
+
+# Security
+django-environ==0.21.0
+
+# Testing
+pytest==7.4.3
+pytest-django==4.7.0
+
+# Code quality
+black==23.12.0
+flake8==6.1.0
+isort==5.13.2
+
+# Debugging
+django-debug-toolbar==4.2.0
+
+# Task Queue (optional - for background tasks)
+celery==5.3.4
+
+# Email Backend
+django-anymail==10.0
+
+# Caching
+django-redis==5.4.0
+redis==5.0.1
+
+# API Rate Limiting
+djangorestframework-simplejwt==5.3.2
+
+# File Upload
+django-storages==1.14.2
+
+# Logging
+python-json-logger==2.0.7
