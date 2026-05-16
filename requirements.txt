@@ -10,7 +10,7 @@ Pillow
 # Environment variables management
 python-dotenv
 
-
+dj_database_url
 
 # REST API Framework (if needed)
 djangorestframework
